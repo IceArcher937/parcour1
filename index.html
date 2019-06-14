@@ -168,11 +168,6 @@
 			function animate() {
 				requestAnimationFrame( animate );
 				  
-				  animateHologram();
-				  
-				  //camera2.position.x = camera.position.x;
-				  //camera2.position.z = camera.position.z;
-				  
 					raycaster.ray.origin.copy( camera.position );
 					raycaster.ray.far = 31 + -moveVector.y/20;
 					
