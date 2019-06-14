@@ -11,7 +11,6 @@
 	<body>
 		<script src="https://threejs.org/build/three.js"></script>
 		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
-		<script src="OBJLoader.js"></script>
 		<script src="GamePadControls.js"></script>
 		<script src="GLTFLoader.js"></script>
 		
@@ -83,7 +82,7 @@
 			
 			init();
 			animate();
-			//controls.getObject
+
 			function init() {
 				camera = new THREE.PerspectiveCamera( 90, window.innerWidth / (window.innerHeight / 2), 1, 1000 );
 				camera.position.y = 100;
@@ -96,8 +95,7 @@
 				
 				camera2 = new THREE.PerspectiveCamera( 90, window.innerWidth / (window.innerHeight / 2), 1, 1000 );
 				camera2.position.y = 100;
-				camera.position.x = 1500;
-				camera.position.z = 1500;//set( 1600, 100, 1600 );
+				camera.position.x = 200;
 				
 				cameraSphere2 = new THREE.Mesh(
 				  new THREE.SphereGeometry(10, 16, 16),
@@ -171,9 +169,6 @@
 				requestAnimationFrame( animate );
 				  
 				  animateHologram();
-				  if( controllersRunning === 2 ) {
-				    updateSwordSpheres();
-				  }
 				  
 				  //camera2.position.x = camera.position.x;
 				  //camera2.position.z = camera.position.z;
@@ -249,251 +244,17 @@
 			
 			
 			
-      var loader = new THREE.GLTFLoader();
+      var GLTFloader = new THREE.GLTFLoader();
       
-      var userSwordFlipped;
-      var userSword2Flipped;
-      
-			loader.load(
-      "models/sword2.glb",
-      function( gltf ) {
-        var scale = 40;
-        userSword = gltf.scene;
-        userSword.rotation.set( 0, -Math.PI / 2, Math.PI / 4 );
-        userSword.position.x = 7.8;
-        userSword.position.y = -1;
-        userSword.position.z = -10;
-        userSword.scale.set( scale, scale, scale );
-        camera.add( userSword );
-        //camera.position.y = 100;
-        console.log("loaded");
-        userSword2 = userSword.clone();
-        camera2.add( userSword2 );
-        
-        userSwordFlipped = userSword.clone();
-        userSwordFlipped.rotation.set(1.75 * Math.PI, Math.PI / 2, 2 * Math.PI);
-        camera.add( userSwordFlipped );
-        
-        userSword2Flipped = userSword.clone();
-        userSword2Flipped.rotation.set(1.75 * Math.PI, Math.PI / 2, 2 * Math.PI);
-        camera2.add( userSword2Flipped );
-      },
-      undefined,
-      function() {
-        console.log( "sword didn't load right" );
-      }
-      );
-      
-      
-      
-      var cloud;
-      var cloud2;
-      
-        var objLoader = new THREE.OBJLoader();
-        
-			  objLoader.load("models/platform.obj",
-			  function(object) {
-			    cloud = object.children[0].clone();
-			    scene.add(cloud);
-			    cloud.position.y = 60;
-			    cloud.rotation.x += -Math.PI / 2;
-			    objects.push(cloud);
-			    cloud2 = cloud.clone();
-			    cloud2.position.set( 1500 + 10, 60, 1500 + 10);
-			    scene.add(cloud2);
-			    objects.push( cloud2 );
-			    makeHolograms();
-			    makeClouds(10,10,15);
-			  });
-			  
-			  
-			  
-			  
-			  
-			  
-			  var cloudArray;
-			  var cloudColors = [
-			    "red",
-			    "orange",
-			    "yellow",
-			    "blue",
-			    "green",
-			    "purple",
-			    "white"
-			  ];
-			  
-			  var posArray;
-			  
-			  function makeClouds(numberX, numberY, areaScale) {
-			    var subCloud;
-			    cloudArray = [];
-			    
-			    posArray = [];
-			    for(var i = 0; i < numberX * 10; i++) {
-			      
-			      for(var j = 0; j < numberY * 10; j++) {
-			        
-			        var x = i * areaScale;
-			        var y = 45 + Math.random() * 20;
-			        var z = j * areaScale;
-			        
-			        posArray.push( new THREE.Vector3(x, y, z) );
-			      }
-			      
-			    }
-			    
-			    
-			    for( var i = 0; i < (numberX * numberY); i++ ) {
-			      subCloud = cloud.clone();
-			      var thisCloudColor = cloudColors[Math.floor(Math.random() * cloudColors.length)];
-			      subCloud.material = new THREE.MeshStandardMaterial({color: thisCloudColor});
-			      var scale = 0.5 + Math.random();
-			      subCloud.scale.set(scale, scale, 1);
-			      
-			      var index = Math.floor(Math.random() * posArray.length);
-			      var newPos = posArray[ index ];
-			      subCloud.position.copy( newPos );
-			      posArray.splice(index, 1);
-			      cloudArray.push(subCloud);
-			      scene.add(subCloud);
-			      objects.push(subCloud);
-			    }
-			  }
-			  
-			  
-			  
-			  
-			    
-			    var hologram1;
-			    var hologram2;
-			    var hologram3;
-			    
-			    function makeHolograms() {
-			      
-			      hologram1 = new THREE.Mesh(
-			      new THREE.TorusGeometry( 25, 1, 4, 40, 2 * Math.PI ),
-			      new THREE.MeshStandardMaterial({color: 0x33b5e5})
-			      );
-			      cloud.add(hologram1);
-			      hologram1.material.transparent = true;
-			      //hologram1.rotation.x = -Math.PI / 2;
-			      hologram1.scale.set(1, 1, 0.15);
-			    
-			      hologram2 = new THREE.Mesh(
-			      new THREE.TorusGeometry( 25, 1, 4, 40, 2 * Math.PI ),
-			      new THREE.MeshStandardMaterial({color: 0x33b5e5})
-			      );
-			      cloud.add(hologram2);
-			      hologram2.material.transparent = true;
-			      //hologram2.rotation.x = -Math.PI / 2;
-			      hologram2.scale.set(1, 1, 0.15);
-			   
-			      hologram3 = new THREE.Mesh(
-			      new THREE.TorusGeometry( 25, 1, 4, 40, 2 * Math.PI ),
-			      new THREE.MeshStandardMaterial({color: 0x33b5e5})
-			      );
-			      cloud.add(hologram3);
-			      hologram3.material.transparent = true;
-			      //hologram3.rotation.x = -Math.PI / 2;
-			      hologram3.scale.set(1, 1, 0.15);
-			    
-			    }
-			    //var hologram4 = hologram.clone();
-			    //var hologram5 = hologram.clone();
-			    
-			    
-			    
-			    var nextHolo1Update;
-			    var nextHolo2Update;
-			    var nextHolo3Update;
-			    
-			    var holo2started = false;
-			    var holo3started = false;
-			    
-			    
-			    var hologramSpeed = 1;
-			    
-			    function hologram1Animate(stage) {
-			      hologram1.position.z += -0.2
-			      hologram1.material.opacity += -0.01;
-			      
-			      
-			        if( !holo2started && stage === 17 ) {
-			          hologram2Animate(1);
-			        }
-			        
-			      
-			      if(stage > 50) {
-			        nextHolo1Update = 1;
-			        hologram1.position.z = 0;
-			        hologram1.material.opacity = 0.5;
-			      } else {
-			        var a = stage;
-			        nextHolo1Update = a + hologramSpeed;
-			      }
-			      
-			    }
-			    function hologram2Animate(stage) {
-			      hologram2.position.z += -0.2
-			      hologram2.material.opacity += -0.01;
-			      
-			        if( !holo3started && stage === 17 ) {
-			          hologram3Animate(1);
-			        }
-			        
-			      
-			      if(stage > 50) {
-			        nextHolo2Update = 1;
-			        hologram2.position.z = 0;
-			        hologram2.material.opacity = 0.5;
-			      } else {
-			        var a = stage;
-			        nextHolo2Update = a + hologramSpeed;
-			      }
-			      
-			    }
-			    function hologram3Animate(stage) {
-			      hologram3.position.z += -0.2
-			      hologram3.material.opacity += -0.01;
-			      
-			      if(stage > 50) {
-			        nextHolo3Update = 1;
-			        hologram3.position.z = 0;
-			        hologram3.material.opacity = 0.5;
-			      } else {
-			        var a = stage;
-			        nextHolo3Update = a + hologramSpeed;
-			      }
-			      
-			    }
-			    
-			    
-			    
-			    
-			    function animateHologram() {
-			      if(nextHolo1Update !== undefined) {
-			        hologram1Animate(nextHolo1Update);
-			        hologram2Animate(nextHolo2Update);
-			        hologram3Animate(nextHolo3Update);
-			        
-			        for(var i = 0; i < cloudArray.length; i++) {
-			          cloudArray[i].children[0].position.z = cloud.children[0].position.z;
-			          cloudArray[i].children[1].position.z = cloud.children[1].position.z;
-			          cloudArray[i].children[2].position.z = cloud.children[2].position.z;
-			        }
-			        //logNs();
-			        //log2();
-			      }
-			    }
-			    
-			    setTimeout(function(){hologram1Animate(1);}, 4500);
-			    
-			    
-			    
-			    
-			    
-			    
-			    function controlsOnTick() {
+
+			
+			//load obstacles here
+			
+			
+			
+			
+			
+			function controlsOnTick() {
 			    }
 			    function controlsOnTick2() {
 			    }
@@ -505,92 +266,6 @@
 			    
 			    var hitDir1;
 			    var hitDir2;
-			    
-			    function updateSwordSpheres() {
-			      var sphere1 = GamePadControls.target.clone();
-			      var sphere2 = GamePadControls2.target.clone();
-			      
-			      var targetPos1 = GamePadControls.target.clone();
-			      var targetPos2 = GamePadControls2.target.clone();
-			      
-			      var hitDist1 = camera.position.clone().distanceToSquared( camera2.position.clone() );
-			      var hitDist2 = camera2.position.clone().distanceToSquared( camera.position.clone() );
-			      //console.log(hitDist1);
-			      //console.log(hitDist2);
-			      //console.log("     DIVIDER         ");
-			      
-			      var hit1 = hitDist1 < (20 * 20) && ( swordSwinging1 ); //radius^2
-			      var hit2 = hitDist2 < (20 * 20) && ( swordSwinging2 ); //radius^2
-			      
-			      hitDir1 = new THREE.Vector3();
-			      hitDir2 = new THREE.Vector3();
-			      
-			      var pos1 = camera.position.clone();
-			      var pos2 = camera2.position.clone();
-			      
-			      if( hit1 ) {
-			        hitDir1.subVectors( pos1, pos2 );
-			        hitDir1.multiplyScalar(-1);
-			        console.log( hitDir1 );
-			        GamePadControls2.moveObject.add( hitDir1.multiplyScalar(0.9) );
-			      }
-		        if( hit2 ) {
-			        hitDir2.subVectors( pos2, pos1 );
-			        hitDir2.multiplyScalar(-1);
-			        console.log( hitDir2 );
-			        GamePadControls.moveObject.add( hitDir2.multiplyScalar(0.9) );
-			      }
-			      
-			    }
-			    
-			    
-			    function generateTexture(color1, color2) {
-//              HEX COLOR HEX COLOR HEX COLOR
-	var size = 2048;
-	// create canvas
-	canvasGrad = document.createElement( 'canvas' );
-	canvasGrad.width = size;
-	canvasGrad.height = size;
-	// get context
-	var context = canvasGrad.getContext( '2d' );
-	// draw gradient
-	context.rect( 0, 0, size, size );
-	var gradient = context.createLinearGradient( 0, 0, size, size );
-	gradient.addColorStop(0, color1); // light blue
-	gradient.addColorStop(1, color2); // dark blue
-	context.fillStyle = gradient;
-	context.fill();
-	return canvasGrad;
-}
-			    /*
-			    var forceWave;
-			    //var forceWaveGradient = generateTexture( '#ff0000', '#00ff00');
-			    //var forceWaveTex = new THREE.Texture( forceWaveGradient );
-			    var imageLoader = new THREE.ImageLoader();
-			    var forceWaveMap = imageLoader.load('http://127.0.0.1:8887/red-and-blueTriangles.png');//gradientBlue.jpg');
-			  var forceWaveMat = new THREE.MeshStandardMaterial( {map: new THREE.Texture(forceWaveMap) } );
-			  
-			  objLoader.load("http://127.0.0.1:8887/forceWave4.obj",
-			  function(object) {
-			    forceWave = object.clone();//.children[0].clone();
-			    //forceWave.children[0].material = new THREE.MeshStandardMaterial( {map: forceWaveMap} );
-			    
-			    forceWave.children[0].material = new THREE.MeshLambertMaterial({ color: 0x33b5e5});
-			    forceWave.children[0].material.transparent = true;
-			    forceWave.children[0].material.opacity = 0.5;
-			    //forceWaveMat;
-			    scene.add(forceWave);
-			    forceWave.scale.set(10,15,15);
-			    forceWave.position.set(40, 100, 40);
-			  });
-			  
-			  var subForceWave = forceWave.children[0].clone();
-			  var forceWaves = [];
-			  
-			  for(var i = 0; i < 10; i++) {
-			    
-			  }
-			  */
 			    
 			    
 		</script>
