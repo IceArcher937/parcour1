@@ -129,14 +129,14 @@
 				
 				
 				// floor
-				//var floorGeometry = new THREE.PlaneBufferGeometry( 2000, 2000, 100, 100 );
-				//floorGeometry.rotateX( - Math.PI / 2 );
-				//var floorMaterial = new THREE.MeshStandardMaterial({ color: 0x624a2e });
-				//floor = new THREE.Mesh( floorGeometry, floorMaterial );
-				//scene.add( floor );
-				//objects.push( floor );
+				var floorGeometry = new THREE.PlaneBufferGeometry( 2000, 2000, 100, 100 );
+				floorGeometry.rotateX( - Math.PI / 2 );
+				var floorMaterial = new THREE.MeshStandardMaterial({ color: 0x624a2e });
+				floor = new THREE.Mesh( floorGeometry, floorMaterial );
+				scene.add( floor );
+				objects.push( floor );
 				
-				//floor.recieveShadow = true;
+				floor.recieveShadow = true;
 				
 				
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
