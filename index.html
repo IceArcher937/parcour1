@@ -263,7 +263,11 @@
 			
 			var pointLights = [];
 			for( var i = 0; i < 4; i++ ) {
-				pointLights.push( new THREE.PointLight( 0x000bff) );
+				var newP = new THREE.PointLight( 0x000bff);
+				var newpSphere = new THREE.Mesh( new THREE.SphereGeometry( 3, 8, 8 );
+				newP.add(newpSphere);
+				scene.add(newP);
+				pointLights.push( newP );
 			}
       
 
