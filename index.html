@@ -240,6 +240,23 @@
 			
 			
       var GLTFloader = new THREE.GLTFLoader();
+			
+			loader.load(
+	// resource URL
+	"platform.glb",
+	// called when the resource is loaded
+	function ( gltf ) {
+		platform = gltf.scene;
+
+		scene.add( gltf.scene );
+
+		gltf.animations; // Array<THREE.AnimationClip>
+		gltf.scene; // THREE.Scene
+		gltf.scenes; // Array<THREE.Scene>
+		gltf.cameras; // Array<THREE.Camera>
+		gltf.asset; // Object
+
+	});
       
 
 			
