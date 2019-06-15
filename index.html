@@ -248,7 +248,9 @@
 	function ( gltf ) {
 		platform = gltf.scene;
 
-		scene.add( gltf.scene );
+		scene.add( platform );
+		platform.scale.set(10,10,10);
+		platform.position.set(0,20, -40);
 
 		gltf.animations; // Array<THREE.AnimationClip>
 		gltf.scene; // THREE.Scene
