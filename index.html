@@ -69,6 +69,7 @@
 			var intersections
 			var objects = [];
 			var floor;
+			var skyBox;
 			
 			var moveVector = new THREE.Vector3();
 			var moveVector2 = new THREE.Vector3();
@@ -108,6 +109,12 @@
 				scene.fog = new THREE.Fog( 0x624a2e, 0, 750 );
 				scene.add( camera );
 				scene.add( camera2 );
+				
+				var skyBoxMat = new THREE.MeshBasicMaterial( {side: THREE.DoubleSide, color: 0x87ceeb} );
+				var skyBoxGeo = new THREE.BoxGeometry( 500, 500, 500 );
+				skyBox = new THREE.Mesh( skyBoxMat, skyBoxGeo );
+				scene.add( skyBox );
+				
 				var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
 				light.position.set( 0.5, 1, 0.75 );
 				scene.add( light );
