@@ -183,8 +183,8 @@
 					raycaster2.ray.far = 31 + -moveVector2.y/20;
 					
 					
-					intersections = raycaster.intersectObjects( scene.children );
-					intersections2 = raycaster2.intersectObjects( scene.children );
+					intersections = raycaster.intersectObjects( objects );
+					intersections2 = raycaster2.intersectObjects( objects );
 					
 					
 					var onObject = intersections.length > 0;
