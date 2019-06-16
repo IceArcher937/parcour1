@@ -244,8 +244,7 @@
 			
 			
 			
-			
-			
+/*
       var GLTFloader = new THREE.GLTFLoader();
 			
 			GLTFloader.load(
@@ -284,12 +283,18 @@
 			pointLights[2].position.set( -15, 29, -40 );
 			scene.add( pointLights[3] );
 			pointLights[3].position.set( -15, 11, -40 );
-      
+      */
 
 			
 			//load obstacles here
 			
-			
+			var subBox = new THREE.Mesh(
+				new THREE.MeshBoxGeometry( 10, 20, 10 ),
+				new THREE.MeshBasicMaterial( {color: 0x87ceeb} );
+			);
+			function makeBox( position ) {
+				... make a parcour box!
+			}
 			
 			
 			
