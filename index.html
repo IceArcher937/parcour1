@@ -13,6 +13,7 @@
 		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
 		<script src="GamePadControls.js"></script>
 		<script src="GLTFLoader.js"></script>
+		<script src="OBJLoader.js"></script>
 		<script src="roundEdgedBox.js"></script>
 		
 
@@ -288,6 +289,17 @@
 
 			
 			//load obstacles here
+			
+			var objloader = new THREE.OBJLoader();
+			
+			var objObject;
+			
+			objloader.load( "parcour2.obj"
+				function( object ) {
+					objObject = object;
+					scene.add( objObject );
+				}
+			);
 			
 			var subBoxGeo = RoundEdgedBox( 10, 20, 10, 10, 5, 5, 5, 1 );
 			
