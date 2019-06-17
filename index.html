@@ -13,6 +13,7 @@
 		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
 		<script src="GamePadControls.js"></script>
 		<script src="GLTFLoader.js"></script>
+		<script src="roundEdgedBox.js"></script>
 		
 
 
@@ -289,11 +290,14 @@
 			//load obstacles here
 			
 			var subBox = new THREE.Mesh(
-				new THREE.BoxGeometry( 10, 20, 10 ),
+				//new THREE.BoxGeometry( 10, 20, 10 ),
+				RoundEdgedBox( 10, 20, 10, 1, 5, 5, 5, 1 ),
 				new THREE.MeshBasicMaterial( {color: 0x87ceeb} )
 			);
 			function makeBox( position ) {
-				//... make a parcour box!
+				var subBox2 = subBox.clone();
+				subBox2.position.copy( position );
+				scene.add( subBox2 );
 			}
 			
 			
