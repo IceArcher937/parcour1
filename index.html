@@ -349,11 +349,11 @@ new THREE.MeshStandardMaterial( {color: 0x00ffff} ) );
 			];
 			var boxArray = [];
 			function makeBoxes(number) {
-				var scale = 5;
-				var scale2 = new THREE.Vector3(scale,scale,scale);
+				var scale2 = new THREE.Vector3(10,2,10);
 				var material = new THREE.MeshStandardMaterial( {color: 0x00ffff} );
 				for( var j=0; j<number; j++ ) {
-					var newBox = makeBox(boxPosArray[j], scale2, material );
+					var pos = boxPosArray[j].multiplyScalar(4);
+					var newBox = makeBox(pos, scale2, material );
 					boxArray.push( newBox );
 					scene.add( newBox );
 				}
