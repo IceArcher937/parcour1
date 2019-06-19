@@ -297,7 +297,10 @@
 			
 			objloader.load( "parcour2.obj",
 				function( object ) {
-					objObject.add( object.children );
+					for( var i=0; i<object.children.length; i++ ) {
+						objObject.add( object.children[i] );
+					}
+					//objObject.add( object.children );
 					scene.add( objObject );
 					objects.push( objObject );
 					console.log( objObject );
