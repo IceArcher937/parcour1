@@ -293,14 +293,16 @@
 			var objloader = new THREE.OBJLoader();
 			
 			var objObjectArray = [];
-			var objObject = new THREE.Object3D();
+			var objObjectPhysical = new THREE.Object3D();
+			var objObject;
 			
 			objloader.load( "parcour2.obj",
 				function( object ) {
 					console.log( object );
 					for( var i=0; i<6; i++ ) {
-						objObject.add( object.children[i] );
+						objObjectPhysical.add( object.children[i] );
 					}
+					objObject = object;
 					//objObject.add( object.children );
 					scene.add( objObject );
 					objects.push( objObject );
