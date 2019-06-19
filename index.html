@@ -297,7 +297,8 @@
 			
 			objloader.load( "parcour2.obj",
 				function( object ) {
-					for( var i=0; i<object.children.length; i++ ) {
+					console.log( object );
+					for( var i=0; i<6; i++ ) {
 						objObject.add( object.children[i] );
 					}
 					//objObject.add( object.children );
