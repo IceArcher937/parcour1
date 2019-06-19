@@ -298,13 +298,13 @@
 			
 			objloader.load( "parcour2.obj",
 				function( object ) {
-					var a;
+					objObject = object;
+					var a = new THREE.Mesh();
 					for( var i=0; i<6; i++ ) {
-						a = objObject.children[i];
+						a.copy( objObject.children[i] );
 						scene.add(a);
 						objects.push(a);
 					}
-					objObject = object;
 					//objObject.add( object.children );
 					//scene.add( objObject );
 					objects.push( objObject );
