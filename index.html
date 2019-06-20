@@ -32,11 +32,15 @@
 		    return( answer );
 		  }
 		  
-		  function repeat( number, func ) {
-			  for( var i = 0; i < number; i++ ) {
-				  func();
+		  function getGeomFromObj( object ) {
+			  var childrenNum = object.children.length;
+			  var childGArray = [];
+			  for( var i = 0; i < object.children.length; i++ ) {
+				  childGArray.push( object.children[i].geometry.clone() );
 			  }
+			  return( childGArray );
 		  }
+		  
 		  
 		  function approxEq( a, b ) {
 		    var dif = Math.abs( a - b );
