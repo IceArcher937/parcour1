@@ -308,7 +308,8 @@
 				function( object ) {
 					objObject = object;
 					var a = new THREE.Mesh();
-					for( var i=0; i<6; i++ ) {
+					var length = boxPosArray.length || 5;
+					for( var i=0; i<length; i++ ) {
 						a.copy( objObject.children[i] );
 						scene.add(a);
 						objects.push(a);
