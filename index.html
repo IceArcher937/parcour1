@@ -74,6 +74,8 @@
 			var canSwing1 = true;
 			var canSwing2 = true;
 			
+			var gravity = 1.4;
+			
 			var intersections
 			var objects = [];
 			var floor;
@@ -204,14 +206,14 @@
 					  moveVector2.y = Math.max(0, moveVector2.y);
 					  canJump2 = true;
 					} else {
-					  moveVector2.y -= 9.8 * 100.0 * delta * 1.4; // 100.0 = mass
+					  moveVector2.y -= 9.8 * 100.0 * delta * gravity; // 100.0 = mass
 					}
 					
 					if( onObject ) {
 					  moveVector.y = Math.max(0, moveVector.y);
 					  canJump = true;
 					} else {
-					  moveVector.y -= 9.8 * 100.0 * delta * 5; // 100.0 = mass
+					  moveVector.y -= 9.8 * 100.0 * delta * gravity; // 100.0 = mass
 					}
 					
 					if( camera.position.y < 0 ) {
