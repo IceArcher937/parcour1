@@ -201,7 +201,7 @@ function buttonsPressedArrayUpdate() {
   
   if( buttonsPressedArray[0].pressed && canJump ) {
     
-    moveVector.y = Math.max(750, moveVector.y); //used to be 350
+    moveVector.y = Math.max(1500, moveVector.y); //used to be 350, then750
     canJump = false;
   }
   if( swordSwinging1 ) {
@@ -222,7 +222,7 @@ function buttonsPressedArrayUpdate2() {
   
   if( buttonsPressedArray2[0].pressed && canJump2 ) {
     
-    moveVector2.setY( Math.max(750, moveVector2.y) ); //used to be 350
+    moveVector2.setY( Math.max(1500, moveVector2.y) ); //used to be 350
     canJump2 = false;
   }
   if( swordSwinging2 ) {
