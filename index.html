@@ -355,26 +355,24 @@ new THREE.MeshStandardMaterial( {color: 0x00ffff} ) );
 			    
 			var boxPosArray = [
 				//new THREE.Vector3( 0, 30, 0),	 (box1 is already there)
-				new THREE.Vector3( -50, 30, 0),
-				new THREE.Vector3( -100, 30, 0),
-				new THREE.Vector3( -150, 30, 0),
-				new THREE.Vector3( -190, 40, 0),
-				new THREE.Vector3( -200, 60, 0),
-				new THREE.Vector3( -300, 60, 0)
-			];
+				new THREE.Vector3( -200, 300, 0),
+				new THREE.Vector3( -100, 300, 0),
+				new THREE.Vector3( -150, 300, 0),
+				new THREE.Vector3( -
+			];//easy jump: 200 med. jump: 400 hard jump: 6-700 hardcore jump: 800
 			var boxArray = [];
 			function makeBoxes(number) {
 				var scale2 = new THREE.Vector3(10,2,10);
 				var material = new THREE.MeshStandardMaterial( {color: 0x00ffff} );
 				for( var j=0; j<number; j++ ) {
-					var pos = boxPosArray[j].multiplyScalar(4);
+					var pos = boxPosArray[j];
 					var newBox = makeBox(pos, scale2, material );
 					boxArray.push( newBox );
 					scene.add( newBox );
 				}
 			}
 			
-			makeBoxes( boxPosArray.length - 1 );
+			makeBoxes( boxPosArray.length );
 			    
 			    
 		</script>
