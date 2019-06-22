@@ -215,9 +215,12 @@
 					
 					if( onObject ) {
 					  moveVector.y = Math.max(0, moveVector.y);
+					  velocity.y = 0;
 					  canJump = true;
 					} else {
-					  moveVector.y -= 9.8 * 100.0 * delta * gravity; // 100.0 = mass
+					  //moveVector.y -= 9.8 * 100.0 * delta * gravity; // 100.0 = mass
+					  velocity.y -= 9.8 * 100.0 * delta * gravity / 100;//<-it is now cumulative
+					  moveVector.y -= velocity.y
 					}
 					
 					if( camera.position.y < 0 ) {
