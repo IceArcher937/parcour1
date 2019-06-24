@@ -119,7 +119,7 @@
 				  camera2.add(cameraSphere2);
 				
 				var crosshairsMap = new THREE.TextureLoader().load( "greenCrosshairs.png" );
-				var crosshairsMaterial = new THREE.SpriteMaterial( { map: crosshairsMat, color: 0xffffff } );
+				var crosshairsMaterial = new THREE.SpriteMaterial( { map: crosshairsMaterial, color: 0xffffff } );
 				crosshairs = new THREE.Sprite( crosshairsMaterial );
 				crosshairs.position.z = -1;
 				camera.add( crosshairs );
