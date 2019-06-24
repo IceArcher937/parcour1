@@ -8,7 +8,7 @@ var buttonsPressedArray2 = [];
 THREE.GamepadControls = function ( onTick, moveObject, object, scale, turnSpeed, controllerNumber ) {
   
   this.onTick = onTick;
-  this.turnSpeed = turnSpeed || 1.5;
+  this.turnSpeed = 3;//turnSpeed || 1.5;
   this.scale = scale;
   this.controllerNumber = controllerNumber;
   this.moveObject = moveObject;
