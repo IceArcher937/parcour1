@@ -311,6 +311,38 @@
       */
 
 			
+			//load gun here
+			var GLTFLoader;
+			
+			GLFTloader.load(
+      				"http://127.0.0.1:8887/gun.glb",
+      				function( gltf ) {
+        				var scale = 4;
+        				console.log( gltf );
+        				gun = gltf.scene.children[0];/*
+        				thing.rotation.set( -Math.PI / 2, 0, 0 );
+        				thing.position.x = 50;
+        				thing.position.y = 30;
+        				thing.position.z = 10;
+        				thing.rotation.z = Math.PI / 2;*/
+        				gun.rotation.set( 0, -Math.PI / 2, 0 );
+        				gun.position.x = 9.5;
+        				gun.position.y = -1.5;
+        				gun.position.z = -10;
+        				gun.rotation.set(Math.PI/2 + 0.5, Math.PI, -Math.PI/2 + -0.3);
+        				gun.scale.set( scale, scale, scale );
+        				camera.add( gun );
+        				objects.push( gun );
+        				console.log("gun loaded");
+      				},
+      				undefined,
+      				function() {
+      				  console.log( "gun didn't load right" );
+      				}
+      			);				
+			
+			
+			
 			//load obstacles here
 			
 			var objloader = new THREE.OBJLoader();
