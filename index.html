@@ -339,7 +339,13 @@
       				function() {
       				  console.log( "gun didn't load right" );
       				}
-      			);				
+      			);	
+			
+			var bulletM = new THREE.MeshStandardMaterial( {metalness: 1, color: 0x555555} );
+			var bulletG = new THREE.SphereGeometry(0.5,8,8);
+			
+			var bullet = new THREE.Mesh(bulletG, bulletM);
+			scene.add( bullet );
 			
 			
 			
