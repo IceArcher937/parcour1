@@ -131,6 +131,7 @@ THREE.GamepadControls = function ( onTick, moveObject, object, scale, turnSpeed,
 		  	GamePadControls.filter(this.moveObject.z);
 
 		  	this.dir.y = 0;
+			this.dir.normalize();
 		  	this.moveObject.add( this.dir.multiplyScalar(0.2) );
 		  	this.moveObject.multiplyScalar( 0.9 );
 			
@@ -141,6 +142,7 @@ THREE.GamepadControls = function ( onTick, moveObject, object, scale, turnSpeed,
 		  	GamePadControls2.filter(this.moveObject.z);
 
 		  	this.dir.y = 0;
+			this.dir.normalize();
 		  	this.moveObject.add( this.dir.multiplyScalar(0.2) );
 		  	this.moveObject.multiplyScalar( 0.9 );
 		    
