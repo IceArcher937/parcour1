@@ -172,6 +172,8 @@
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight / 2 );
 				document.body.appendChild( renderer.domElement );
+				document.body.appendChild( WEBVR.createButton( renderer ) );
+				renderer.vr.enabled = true;
 				
 				renderer2 = new THREE.WebGLRenderer();
 				renderer2.setPixelRatio( window.devicePixelRatio );
@@ -194,8 +196,7 @@
       
       
         
-			function animate() {
-				requestAnimationFrame( animate );
+			renderer.setAnimationLoop( function() {
 				  
 					raycaster.ray.origin.copy( camera.position );
 					raycaster.ray.far = 31 + -moveVector.y/20;
@@ -261,7 +262,7 @@
 				
 				renderer.render( scene, camera );
 				renderer2.render( scene, camera2 );
-			}
+			} );
 			
 			
 			var animationClock = new THREE.Clock();
